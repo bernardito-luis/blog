@@ -1,0 +1,21 @@
+[Unit]
+Description=Gunicorn instance to serve the falcon application
+Requires=falcon_app.socket
+After=network.target
+
+[Service]
+Type=notify
+# the specific user that our service will run as
+User=maxim
+Group=maxim
+PIDFile=/tmp/gunicorn.pid
+Environment="PATH=/home/maxim/prj/my_blog/venv/bin/"
+WorkingDirectory=/home/maxim/prj/my_blog/
+ExecStart=/home/maxim/prj/my_blog/venv/bin/gunicorn -b localhost:8002 --reload blog.app
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
