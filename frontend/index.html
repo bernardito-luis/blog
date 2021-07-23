@@ -1,19 +1,25 @@
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="/static/bootstrap.min.css">
+<link rel="stylesheet" href="/static/index.css">
+
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<div id="app">
-  <h1>Hello App!</h1>
-  <p>
-    <!-- use router-link component for navigation. -->
-    <!-- specify the link by passing the `to` prop. -->
-    <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
-    <router-link to="/foo">Go to Foo</router-link>
-    <router-link to="/bar">Go to Bar</router-link>
-  </p>
-  <!-- route outlet -->
-  <!-- component matched by the route will render here -->
-  <router-view></router-view>
+
+<div id="app" class="container">
+  <nav class="navbar sticky-top navbar-light bg-light p-3">
+    <h2><router-link to="/">Блог</router-link></h2>
+    <h2><router-link to="/">О блоге</router-link></h2>
+  </nav>
+  <div class="row col-12">
+
+    <div class="col-xl-3 d-none d-xl-block" id="tags-nav">
+      <router-view class="view tags-nav" name="TagsNavigation"></router-view>
+    </div>
+    <router-view class="col-xl-8 col-sm-12 px-5 view main-content"></router-view>
+  </div>
 </div>
 
 <script src="/static/index.js"></script>

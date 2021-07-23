@@ -1,0 +1,26 @@
+a:link {
+    text-decoration: none;
+}
+
+.post-tag {
+    display: inline-block;
+    color: white;
+    background: #0063B3;
+    margin: 0.5em;
+    padding: 0.5em 1em;
+    width: max-content;
+    border-radius: 0.5em;
+}
+.selected-tag {
+    background: #007FE7;
+}
+.post-tag:hover {
+    background: #007FE7;
+}
+.post-tag:link, .post-tag:visited, .post-tag a:hover, .post-tag a:active, .post-tag a:focus {
+    color: white;
+}
+
+.page-link:focus {
+  box-shadow: none;
+}

@@ -2,7 +2,7 @@ import falcon
 
 from blog.views import PostsView, PostView, TagsView
 
-app = application = falcon.App(cors_enable=True)  # TODO: remove CORS?
+app = application = falcon.App()
 
 posts = PostsView()
 app.add_route('/posts/', posts)
