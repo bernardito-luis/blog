@@ -127,12 +127,15 @@ class PostView:
                 post = Post[id]
             except ObjectNotFound:
                 raise HTTPNotFound()
+            post_tags = [tag.name for tag in post.tags]
 
         serialized_post = {
             'id': post.id,
-            'created_at': post.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+            'created_date': post.created_at.strftime('%d.%m.%Y'),
+            'created_time': post.created_at.strftime('%H:%M'),
             'title': post.title,
             'content': post.content,
+            'tags': post_tags,
         }
 
         resp.text = json.dumps(serialized_post, ensure_ascii=False)

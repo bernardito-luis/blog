@@ -8,17 +8,27 @@ const Posts = {
         <p v-html="error"></p>
       </div>
 
-      <div v-if="posts" class="content">
+      <div v-if="posts">
         <div v-for="post in posts" class="post-preview my-4">
           <div class="post-preview-header row justify-content-between">
-            <h3 class="col-4"><router-link :to="{ name: 'post', params: {id: post.id} }">
+            <h3 class="col-8"><router-link :to="{ name: 'post', params: {id: post.id} }">
               {{ post.title }}
             </router-link></h3>
             <div class="post-preview-date col-4 text-end">
               {{ post.created_at }}
             </div>
           </div>
-          <p v-html="post.preview"></p>
+          <div v-html="post.preview" class="text-justify"></div>
+          <div class="post-tags mt-1" v-if="post.tags.length > 0">
+            <i>Метки:</i>
+            <router-link
+              v-for="tag in post.tags"
+              :to="{ name: 'posts', query: { tag: tag.name } }"
+              class = "post-tag"
+            >
+              {{ tag.name }}
+            </router-link>
+          </div>
           <hr>
         </div>
       </div>
@@ -180,7 +190,7 @@ const Posts = {
 
 const Post = {
   template: `
-      <div class="post">
+      <div class="post mt-4">
         <div v-if="loading" class="loading">
           Loading...
         </div>
@@ -189,9 +199,39 @@ const Post = {
           {{ error }}
         </div>
 
-        <div v-if="post" class="content">
-          <h2>{{ post.title }}</h2>
-          <p v-html="post.content"></p>
+        <div v-if="post" class="content mb-5">
+          <div class="post-header row">
+            <div class="col-lg-9 col-sm-12">
+              <h2>{{ post.title }}</h2>
+            </div>
+            <div class="post-date row col-lg-3 col-md-12 text-end">
+              <div class="col-lg-12 col-md-1 col-2">{{ post.created_time }}</div>
+              <div class="col-lg-12 col-md-1 col-2">{{ post.created_date }}</div>
+            </div>
+            <div class="post-tags" v-if="post.tags.length > 0">
+              <span>Метки:</span>
+              <router-link
+                v-for="tag in post.tags"
+                :to="{ name: 'posts', query: { tag: tag } }"
+                class = "post-tag"
+              >
+                {{ tag }}
+              </router-link>
+            </div>
+          </div>
+          <hr>
+          <div v-html="post.content" class="post-content text-justify"></div>
+          <hr>
+          <div class="post-tags" v-if="post.content.length > 2200 && post.tags.length > 0">
+            <span>Метки:</span>
+            <router-link
+              v-for="tag in post.tags"
+              :to="{ name: 'posts', query: { tag: tag } }"
+              class = "post-tag"
+            >
+              {{ tag }}
+            </router-link>
+          </div>
         </div>
       </div>
   `,
@@ -234,26 +274,24 @@ const Post = {
 
 const TagsNavigation = {
   template: `
-    <div class="">
-      <div class="mt-5 position-fixed">
-        <div class="tags">
-          <div v-if="loading" class="loading">
-            Loading...
-          </div>
+    <div class="mt-5 position-fixed">
+      <div class="tags">
+        <div v-if="loading" class="loading">
+          Loading...
+        </div>
 
-          <div v-if="error" class="error">
-            <p v-html="error"></p>
-          </div>
+        <div v-if="error" class="error">
+          <p v-html="error"></p>
+        </div>
 
-          <div v-if="tags">
-            <div v-for="tag in tags">
-                <router-link
-                  :to="{ name: 'posts', query: { tag: tag.name } }"
-                  v-bind:class = "(tag.name == selected_tag_name)?'selected-tag post-tag':'post-tag'"
-                >
-                  {{ tag.name }}
-                </router-link>
-            </div>
+        <div v-if="tags">
+          <div v-for="tag in tags">
+              <router-link
+                :to="{ name: 'posts', query: { tag: tag.name } }"
+                v-bind:class = "(tag.name == selected_tag_name)?'selected-tag post-tag':'post-tag'"
+              >
+                {{ tag.name }}
+              </router-link>
           </div>
         </div>
       </div>
@@ -298,8 +336,29 @@ const TagsNavigation = {
   },
 }
 
+const About = {
+  template: `
+    <div class="about mt-4">
+      <h2>Немного о блоге и об авторе</h2>
+      <div class="mt-3">
+        <img src="/images/about.jpg">
+        <div class="content">
+          Меня зовут Макс, круглый год я пишу программки, но иногда выбираюсь в отпуск.
+          В отпусках я обычно веду что-то вроде дневника.
+          Собственно, в этом блоге собраны записки о таких путешествиях.
+          Технических подробностей в них немного, зато описаны некоторые курьезные случаи,
+          приключившиеся со мной и моими друзьями.
+          Большинство путешествий - или поход, или поездка заграницу с нетривиальным маршрутом.
+          Могут попадаться посты и на другие тематики, но их меньшинство.
+        </div>
+      </div>
+    </div>
+  `,
+}
+
 const routes = [
   { path: '/', name: 'posts', components: { default: Posts, TagsNavigation } },
+  { path: '/about/', name: 'about', components: { default: About, TagsNavigation } },
   { path: '/posts/:id//', name: 'post', components: { default: Post, TagsNavigation } },
 ]
 

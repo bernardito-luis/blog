@@ -24,3 +24,40 @@ a:link {
 .page-link:focus {
   box-shadow: none;
 }
+
+/* -----------    COMMON    ----------- */
+p {
+  text-indent: 1.5em;
+  margin-bottom: 0;
+  text-align: justify;
+}
+
+
+/* -----------     ABOUT    ----------- */
+.about img {
+  height: 200px;
+  float: right;
+  margin-left: 1em;
+}
+.about .content {
+  text-align: justify;
+}
+
+/* ----------- POST-PREVIEW ----------- */
+.post-preview h3 a {
+  text-decoration: underline;
+}
+/* tags styles specified in post */
+
+
+
+/* -----------      POST    ----------- */
+.post-header .post-date div {
+  font-style: italic;
+}
+
+.post .post-tags .post-tag, .post-preview .post-tags .post-tag {
+  font-size: small;
+  margin: 0 0.2em;
+  padding: 0 0.2em;
+}
