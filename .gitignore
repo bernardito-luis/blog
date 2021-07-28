@@ -124,33 +124,9 @@ ENV/
 # VS Code
 .vscode
 
-# Spyder project settings
-.spyderproject
-
-# Rope project settings
-.ropeproject
-### JetBrains template
-# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
-# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
-
 # User-specific stuff:
 .idea/
 .eslintrc.json
-
-# Sensitive or high-churn files:
-.idea/dataSources.ids
-.idea/dataSources.xml
-.idea/dataSources.local.xml
-.idea/sqlDataSources.xml
-.idea/dynamic.xml
-.idea/uiDesigner.xml
-
-# Gradle:
-.idea/gradle.xml
-.idea/libraries
-
-# Mongo Explorer plugin:
-.idea/mongoSettings.xml
 
 ## File-based project format:
 *.iws
@@ -166,13 +142,6 @@ ENV/
 # JIRA plugin
 atlassian-ide-plugin.xml
 
-# Crashlytics plugin (for Android Studio and IntelliJ)
-com_crashlytics_export_strings.xml
-crashlytics.properties
-crashlytics-build.properties
-fabric.properties
-# Created by .ignore support plugin (hsz.mobi)
-
 # rpmbuld
 rpm-tmp.*
 yum-root-*
@@ -183,22 +152,5 @@ yum-root-*
 # Direnv
 .envrc
 
-# It's On debug flags file
-debug_flags.py
-production_flags.py
-its_on_client/debug_flags.py
-its_on_client/production_flags.py
-production_flags.json
-debug_flags.json
-test_flags.json
-
-.rozental.sqlite
-database.sqlite
-.tm_properties
-per_function_coverage.xlsx
-dmypy.txt
-reports/junit_report.xml
-prof/
-profiles/
-clinic_lists/
-reports/
+# project
+frontend/images/
