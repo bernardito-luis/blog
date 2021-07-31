@@ -6,7 +6,7 @@ import falcon
 from falcon.request import Request
 from falcon.response import Response
 from falcon.errors import HTTPNotFound
-from pony.orm import db_session, select, left_join
+from pony.orm import db_session, select, left_join, desc
 from pony.orm import ObjectNotFound
 
 from blog.models import Post, Tag
@@ -60,7 +60,7 @@ def get_posts_data(page: int, per_page: int, filter_tag: Optional[str]):
 
         limit = per_page
         offset = (page - 1) * per_page
-        posts = select(p for p in Post)
+        posts = select(p for p in Post).order_by(desc(Post.created_at))
         if filter_tag:
             posts = posts.filter(lambda p: filter_tag in p.tags.name)
         posts = posts[offset:offset + limit]

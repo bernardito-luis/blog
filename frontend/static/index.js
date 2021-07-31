@@ -56,6 +56,7 @@ const Posts = {
     }
   },
   created () {
+    document.title = 'Щедрый ветер'
     this.fetchData()
   },
   watch: {
@@ -258,6 +259,7 @@ const Post = {
         .then(response => {
           original_elem.post = response['data']
           original_elem.loading = false
+          document.title = response['data'].title
         })
         .catch(error => {
           if (error.response.status == 404) {

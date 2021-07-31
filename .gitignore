@@ -154,3 +154,5 @@ yum-root-*
 
 # project
 frontend/images/
+database.sqlite
+posts_from_lj/
