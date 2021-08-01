@@ -205,7 +205,7 @@ const Post = {
             <div class="col-lg-9 col-sm-12">
               <h2>{{ post.title }}</h2>
             </div>
-            <div class="post-date row col-lg-3 col-md-12 text-end">
+            <div class="post-date col-lg-3 col-md-12 text-end">
               <div class="col-lg-12 col-md-1 col-2">{{ post.created_time }}</div>
               <div class="col-lg-12 col-md-1 col-2">{{ post.created_date }}</div>
             </div>

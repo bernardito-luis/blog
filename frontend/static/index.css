@@ -38,11 +38,12 @@ p {
   text-decoration: underline;
 }
 .post-preview .image-preview {
-  margin-top: 1em;
+  display: block;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-  display: block;
+  margin-bottom: 1em;
+  margin-top: 1em;
   border-radius: 1em;
 }
 
