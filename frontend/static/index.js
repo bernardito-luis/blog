@@ -18,7 +18,7 @@ const Posts = {
               {{ post.created_at }}
             </div>
           </div>
-          <div v-html="post.preview" class="text-justify"></div>
+          <div v-html="post.preview" class="post-preview-content text-justify"></div>
           <div class="post-tags mt-1" v-if="post.tags.length > 0">
             <i>Метки:</i>
             <router-link
@@ -56,7 +56,7 @@ const Posts = {
     }
   },
   created () {
-    document.title = 'Щедрый ветер'
+    document.title = 'generous wind'
     this.fetchData()
   },
   watch: {
