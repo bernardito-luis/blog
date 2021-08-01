@@ -85,6 +85,10 @@ p {
   width: 90%;
 }
 
+.post-content img +p:not(.post-image-caption) {
+  margin-top: 1em;
+}
+
 .post-image-caption {
   margin-bottom: 1em;
   text-align: center;
