@@ -18,13 +18,16 @@ p {
 
 
 /* -----------     ABOUT     ----------- */
-.about img {
+.about img.author {
   height: 200px;
   float: right;
   margin-left: 1em;
 }
 .about .content {
   text-align: justify;
+}
+.about img.tg-logo {
+  height: 20px;
 }
 @media (max-width: 1024px) {
    .about {

@@ -343,7 +343,7 @@ const About = {
     <div class="about mt-4">
       <h2>Немного о блоге и об авторе</h2>
       <div class="mt-3">
-        <img src="/images/about.jpg">
+        <img class="author" src="/images/about.jpg">
         <div class="content">
           Меня зовут Макс, круглый год я пишу программки, но иногда выбираюсь в отпуск.
           В отпусках я обычно веду что-то вроде дневника.
@@ -352,6 +352,11 @@ const About = {
           приключившиеся со мной и моими друзьями.
           Большинство путешествий - или поход, или поездка заграницу с нетривиальным маршрутом.
           Могут попадаться посты и на другие тематики, но их меньшинство.
+        </div>
+        <div class="links mt-3">
+          <a href="https://t.me/generous_wind" target="_blank">
+            <img class="tg-logo" src="/images/t_logo.svg"> generous_wind
+          </a>
         </div>
       </div>
     </div>
