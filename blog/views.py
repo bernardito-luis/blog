@@ -12,12 +12,17 @@ from pony.orm import ObjectNotFound
 from blog.models import Post, Tag
 
 
-def get_preview(content: str) -> str:
+def get_preview(post: Post) -> str:
+    content = post.content
     if '<cut>' not in content and len(content) < 500:
         return content
     elif '<cut>' not in content:
         return '<i>Всё самое интересное внутри ^_^</i>'
     else:
+        content = content.replace(
+            '{{ link_to_self }}',
+            f"<a href='/posts/{post.id}/'>(...)</a>"
+        )
         return content[:content.index('<cut>')]
 
 
@@ -57,7 +62,6 @@ def get_posts_and_count(filter_tag: Optional[str]):
 
 def get_posts_data(page: int, per_page: int, filter_tag: Optional[str]):
     with db_session:
-
         limit = per_page
         offset = (page - 1) * per_page
         posts = select(p for p in Post).order_by(desc(Post.created_at))
@@ -84,7 +88,7 @@ def get_posts_data(page: int, per_page: int, filter_tag: Optional[str]):
                 'id': post.id,
                 'created_at': post.created_at.strftime('%d.%m.%Y'),
                 'title': post.title,
-                'preview': get_preview(post.content),
+                'preview': get_preview(post),
                 'tags': post_to_tags.get(post, []),
             },
         )
@@ -134,7 +138,7 @@ class PostView:
             'created_date': post.created_at.strftime('%d.%m.%Y'),
             'created_time': post.created_at.strftime('%H:%M'),
             'title': post.title,
-            'content': post.content,
+            'content': post.content.replace('{{ link_to_self }}', ''),
             'tags': post_tags,
         }
 
