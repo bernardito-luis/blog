@@ -246,8 +246,17 @@ const Post = {
   created () {
     this.fetchData()
   },
+  beforeUnmount() {
+    this.removeImageClickHandler()
+  },
   watch: {
-    '$route': 'fetchData'
+    '$route': 'fetchData',
+    post() {
+      // wait DOM update, to set up handler
+      this.$nextTick(() => {
+        this.addImageClickHandler()
+      })
+    }
   },
   methods: {
     fetchData () {
@@ -271,6 +280,48 @@ const Post = {
           }
         })
     },
+    handleImageClick(event) {
+      const target = event.target
+      if (target.tagName === 'IMG' && target.classList.contains('ghibli')) {
+        const src = target.getAttribute('src')
+
+        target.classList.add('fade-out')
+
+        setTimeout(() => {
+          let newSrc
+          if (!src.includes('_ghibli')) {
+            newSrc = src.replace(/(\.\w+)$/, '_ghibli$1')
+          } else {
+            newSrc = src.replace('_ghibli', '')
+          }
+          target.setAttribute('src', newSrc)
+
+          target.classList.remove('fade-out')
+
+          requestAnimationFrame(() => {
+            target.classList.add('fade-in')
+
+            setTimeout(() => {
+              target.classList.remove('fade-in')
+            }, 500)
+          })
+        }, 500)
+      }
+    },
+    addImageClickHandler() {
+      console.log('add handler')
+      const contentEl = this.$el.querySelector('.post-content')
+      console.log(this.$el.querySelector('.post-content'))
+      if (contentEl) {
+        contentEl.addEventListener('click', this.handleImageClick)
+      }
+    },
+    removeImageClickHandler() {
+      const contentEl = this.$refs.postContent
+      if (contentEl) {
+        contentEl.removeEventListener('click', this.handleImageClick)
+      }
+    }
   },
 }
 

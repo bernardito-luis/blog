@@ -3,3 +3,5 @@ gunicorn==20.1.0
 ipython==7.25.0
 pony==0.7.14
 pillow
+openai==1.93.0
+pydantic-settings[dotenv]==2.10.1

@@ -85,7 +85,8 @@ p {
   margin-top: 1em;
   margin-left: auto;
   margin-right: auto;
-  width: 90%;
+  max-width: 90%;
+  max-height: 650px;
 }
 
 .post-content img +p:not(.post-image-caption) {
@@ -113,6 +114,45 @@ p {
   }
 }
 
+span.totoro {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-image: url(/images/2025_japan/totoro-jumping-32-0.png);
+  background-size: cover;
+}
+
+img.ghibli {
+  cursor: url(/images/2025_japan/totoro-jumping-32-0.png), pointer;
+  -webkit-animation: cursor 700ms infinite;
+  animation: cursor 700ms infinite;
+
+  transition: opacity 0.5s ease;
+}
+
+@-webkit-keyframes cursor {
+  0% {cursor: url(/images/2025_japan/totoro-jumping-32-0.png), pointer;}
+  25% {cursor: url(/images/2025_japan/totoro-jumping-32-1.png), pointer;}
+  50% {cursor: url(/images/2025_japan/totoro-jumping-32-2.png), pointer;}
+  75% {cursor: url(/images/2025_japan/totoro-jumping-32-3.png), pointer;}
+  100% {cursor: url(/images/2025_japan/totoro-jumping-32-0.png), pointer;}
+}
+
+@keyframes cursor {
+  0% {cursor: url(/images/2025_japan/totoro-jumping-32-0.png), pointer;}
+  25% {cursor: url(/images/2025_japan/totoro-jumping-32-1.png), pointer;}
+  50% {cursor: url(/images/2025_japan/totoro-jumping-32-2.png), pointer;}
+  75% {cursor: url(/images/2025_japan/totoro-jumping-32-3.png), pointer;}
+  100% {cursor: url(/images/2025_japan/totoro-jumping-32-0.png), pointer;}
+}
+
+img.ghibli.fade-out {
+  opacity: 0;
+}
+
+img.ghibli.fade-in {
+  opacity: 1;
+}
 
 /* -----------     TAGS     ----------- */
 .post-tag {
