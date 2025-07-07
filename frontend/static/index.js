@@ -312,14 +312,14 @@ const Post = {
       const contentEl = this.$el.querySelector('.post-content')
       if (contentEl) {
         contentEl.addEventListener('click', this.handleImageClick)
-        contentEl.addEventListener('touchcancel', this.handleImageClick)
+        contentEl.addEventListener('touchend', this.handleImageClick)
       }
     },
     removeImageClickHandler() {
       const contentEl = this.$refs.postContent
       if (contentEl) {
         contentEl.removeEventListener('click', this.handleImageClick)
-        contentEl.removeEventListener('touchcancel', this.handleImageClick)
+        contentEl.removeEventListener('touchend', this.handleImageClick)
       }
     }
   },
